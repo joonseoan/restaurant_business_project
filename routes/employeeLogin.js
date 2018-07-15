@@ -1,19 +1,47 @@
+const Employees = require('../models/employees')
+
+const {}
+
+
 module.exports = (app) =>{
 
-    // When user input id and passworld
-    app.get('/employee', async (req, res) => {
+    app.post('/employees', async (req, res) => {
 
-        res.send('This is working');
+        const employees = new Employees(req.body);
 
+        try {
+
+            await employees.save();
+
+            const token = await user.generateAuthToken();
+
+            res.header('x-auth', token).send(user);
+        
+            res.send('Data successfully sento server and database');
+
+        } catch (e) {
+
+            res.status(400).send(e);
+
+        }
+        
     });
 
-
-    app.post('/employee', async (req, res) => {
-
-        res.send('This is posting');
-
+    app.get('/employees', async (req, res) => {
+                    
+        try { 
+            
+            const employees = await Employees.find({});
+            
+            res.send({employees});
+        
+        }catch (e) {
+    
+            res.status(400).send(e);
+    
+        }
+            
     });
-
 
 
 
