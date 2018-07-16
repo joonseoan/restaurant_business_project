@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 // employee database
 const { Schema } = mongoose;
 
-const employeeSchema = new Schema ({
+module.exports = new Schema ({
 
-    employeeId : {
+    employeeId: {
 
         type: String,
         required: true,
@@ -23,13 +23,13 @@ const employeeSchema = new Schema ({
     },
     tokens: [
         {
-            accessKey: {
+            access: {
                 type: String,
-                require: true
+                required: true
             },
             token: {
                 type: String,
-                require: true
+                required: true
             }
         }
     ],
@@ -45,16 +45,14 @@ const employeeSchema = new Schema ({
 
         type: String,
         required: true,
-        trim: true,
-        unique: true
+        trim: true
         
     },
     lastName: {
 
         type: String,
         required: true,
-        trim: true,
-        unique: true
+        trim: true
 
     },
     startDate: {
@@ -109,12 +107,3 @@ const employeeSchema = new Schema ({
     }
 
 });
-
-const Employees = mongoose.model('employees', employeeSchema);
-
-module.exports = { 
-    
-    Employees,
-    employeeSchema
-
-};
